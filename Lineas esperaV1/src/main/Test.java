@@ -52,9 +52,36 @@ public class Test {
                 double lamda=reader.nextDouble();
                 System.out.println("Ingrese la cantidad de servidores: ");
                 double c=reader.nextDouble();
+                
+                System.out.println("Resultados");
+                double a=lamda/U;
+                System.out.println("La carga total de sistema es del " + a*10 + " %");
+                double p=a/c;
+                System.out.println("La utilizacion por servidor es del "+ p*100 + " %");
+                double p0 = calculateP0(a, c, p);
+                System.out.println("La probabilidad de que no haya nadie en el sistema es de " + (p0 * 100));
+                
             }
          }
         
         } while (option !=4);
     }
+    
+    public static double Factorial(double num) {
+        if (num == 0.0 || num == 1.0) {
+            return 1.0;
+        } else {
+            return num * Factorial(num - 1);
+        }
+    }
+    
+    public static double calculateP0(double a, double c, double p) {
+        double sum = 0.0;
+        for (int k = 0; k < c; k++) {
+            sum += Math.pow(a, k) / Factorial(k);
+        }
+        sum += (Math.pow(a, c) / Factorial(c)) * (1 / (1 - p));
+        return 1.0 / sum;
+    }
+    
 }
