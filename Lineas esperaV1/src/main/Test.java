@@ -71,6 +71,29 @@ public class Test {
                 double L = lamda*w;
                 System.out.println("El número promedio en el sistema es de "+ (float)L);
             }
+            
+            case 3 -> {
+                System.out.println("Ingrese el valor de miu (U): ");
+                double U=reader.nextDouble();
+                System.out.println("Ingrese el valor de lamda: ");
+                double lamda=reader.nextDouble();
+                System.out.println("Ingrese el valor de la premisa (k): ");
+                double k=reader.nextDouble();
+                
+                System.out.println("Resultados");
+                double p=lamda/U;
+                System.out.println("La utilizacion por servidor es del "+ p*100 + " %");
+                double p0 = (1-p)/(1-Math.pow(p, k+1));
+                System.out.println("La probabilidad de que no haya nadie en el sistema es del "+ (float)p0*100+" %");
+                double pK = Math.pow(p, k)*p0;
+                System.out.println("La probabilidad de rechazo es de "+(float)pK*100+" %");
+                double labdaE=lamda*(1-Math.pow(p, k));
+                System.out.println("La probabilidad efectiva de arribo es de "+(float)labdaE);
+                double L=(p-(1-(k+1)*Math.pow(p, k)+k*(Math.pow(p, k+1))))/(1-p)*(1-Math.pow(p, k+1));
+                System.out.println("La longitud de la cola es de "+(float)L);
+                double w=L/labdaE;
+                System.out.println("El tiempo total del promedio del sistema es de "+(float)w*60+" minutos");
+            }
          }
         
         } while (option !=4);
