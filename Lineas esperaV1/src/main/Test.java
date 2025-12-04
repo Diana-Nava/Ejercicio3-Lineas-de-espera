@@ -22,26 +22,25 @@ public class Test {
         System.out.println("2. Modelo M/M/C");
         System.out.println("4. Modelo M/M/1K");
         System.out.println("Opcion: ");
-        byte option   = reader.nextByte(
+        byte option = reader.nextByte();
 
         switch (option) {
             case 1 -> {
                 System.out.println("Ingrese el valor de miu (U): ");
                 int U   = reader.nextInt();
                 System.out.println("Ingrese el valor de lamda: ");
-                int lamda   = reader.nextInt(
-
+                int lamda   = reader.nextInt();
+                
                 System.out.println("Resultados: ");
                 double p   = lamda / U;
-                System.out.println("La utilizacion del sistema es del " +  ( p  * 1 00) + "%");
-                double Lq   = Math.pow(lamda,  2   )  /   U *( U -lamda);
+                System.out.println("La utilizacion del sistema es del " +  ( p  * 100) + "%");
+                double Lq   = Math.pow(lamda,2)/U*(U-lamda);
                 System.out.println("El promedio de cliente en la cola es de: " + Lq + " clientes");
-
-                doule w = Wq + (1/U);
-         
-     
-
-        } 
+                double Wq = Lq/lamda;
+                System.out.println("El tiempo promedio de espera en la cola es de "+Wq * 60+" minutos");
+                double w = Wq + (1/U);
+                System.out.println("El tiempo total del sistema es de "+ w * 60 +" minutos");
+         }    
+         }
     }
-    
 }
