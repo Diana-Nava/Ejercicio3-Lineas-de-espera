@@ -58,9 +58,18 @@ public class Test {
                 System.out.println("La carga total de sistema es del " + a*10 + " %");
                 double p=a/c;
                 System.out.println("La utilizacion por servidor es del "+ p*100 + " %");
-                double p0 = calculateP0(a, c, p);
-                System.out.println("La probabilidad de que no haya nadie en el sistema es de " + (p0 * 100));
-                
+                double p0 = calcularP0(a, c, p);
+                System.out.println("La probabilidad de que no haya nadie en el sistema es de " + (float)(p0 * 1000) + " %");
+                double pEspera = (Math.pow(a, c)/(Factorial(c)*(1-p)))*p0;
+                System.out.println("La probabilidad de que un cliente tenga que esperar es de " + (float)pEspera * 100 + " %");
+                double Lq = (pEspera*p)/(1-p);
+                System.out.println("La longitud promedio de la cola es de "+ (float)Lq +" personas");
+                double Wq = Lq/lamda;
+                System.out.println("El tiempo promedio de espera en la cola es de "+ (float)(Wq * 60) + " minutos");
+                double w = Wq + (1/U);
+                System.out.println("El tiempo total en el sistema es de "+ (float)(w*60) + " minutos");
+                double L = lamda*w;
+                System.out.println("El número promedio en el sistema es de "+ (float)L);
             }
          }
         
@@ -75,7 +84,7 @@ public class Test {
         }
     }
     
-    public static double calculateP0(double a, double c, double p) {
+    public static double calcularP0(double a, double c, double p) {
         double sum = 0.0;
         for (int k = 0; k < c; k++) {
             sum += Math.pow(a, k) / Factorial(k);
