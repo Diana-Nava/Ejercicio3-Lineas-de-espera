@@ -46,7 +46,12 @@ public class Test {
                 System.out.println("El tiempo total del sistema es de "+ w * 60 +" minutos");
          }
             case 2 -> {
-                
+                System.out.println("Ingrese el valor de miu (U): ");
+                double U=reader.nextDouble();
+                System.out.println("Ingrese el valor de lamda: ");
+                double lamda=reader.nextDouble();
+                System.out.println("Ingrese la cantidad de servidores: ");
+                double c=reader.nextDouble();
             }
          }
         
